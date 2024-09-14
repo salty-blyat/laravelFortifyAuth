@@ -8,6 +8,7 @@ Route::get('/', function () {
 Route::get('home', function () {
     return view('welcome');
 })->name('home');
+
 Route::get('login', function () {
     return view('welcome');
 })->name('login');
@@ -20,12 +21,23 @@ Route::get('register', function () {
 Route::get('logout', function () {
     return view('welcome');
 })->name('logout');
- 
-// Route::prefix('auth')->group(function() {
-//     Route::post('login', [AuthController::class, 'login'])->name('auth.login');
-//     Route::post('register', [AuthController::class, 'register'])->name('auth.register');
-//     Route::post('email-verify', [AuthController::class, 'emailVerify'])->name('auth.email-verify');
-//     Route::post('reset-password', [AuthController::class, 'resetPassword'])->name('auth.reset-password');
-// });
 
+Route::get('reset-password', function () {
+    return view('welcome');
+})->name('reset-password');
+
+
+
+Route::get('reset-password-update', function () {
+    $token = request()->query('token');
+    $email = request()->query('email');
+    return view('welcome', compact('email', 'token'));
+})->name('reset-password-update');
+ 
+
+
+Route::get('verify-email', function () { 
+    return view('welcome');
+})->name('verify-email');
+ 
 
