@@ -1,5 +1,5 @@
 <?php
- 
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -15,29 +15,31 @@ Route::get('login', function () {
 
 Route::get('register', function () {
     return view('welcome');
-})->name('register'); 
-
-
-Route::get('logout', function () {
-    return view('welcome');
-})->name('logout');
+})->name('register');
 
 Route::get('reset-password', function () {
-    return view('welcome');
-})->name('reset-password');
+        return view('welcome');
+    })->name('reset-password');
 
 
 
-Route::get('reset-password-update', function () {
-    $token = request()->query('token');
-    $email = request()->query('email');
-    return view('welcome', compact('email', 'token'));
-})->name('reset-password-update');
- 
+    Route::get('reset-password-update', function () {
+        $token = request()->query('token');
+        $email = request()->query('email');
+        return view('welcome', compact('email', 'token'));
+    })->name('reset-password-update');
 
 
-Route::get('verify-email', function () { 
-    return view('welcome');
-})->name('verify-email');
- 
 
+    
+Route::middleware('auth')->group(function () {
+
+    Route::get('logout', function () {
+        return view('welcome');
+    })->name('logout');
+
+
+    Route::get('verify-email', function () {
+        return view('welcome');
+    })->name('verify-email');
+});
