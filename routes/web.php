@@ -18,20 +18,21 @@ Route::get('register', function () {
 })->name('register');
 
 Route::get('reset-password', function () {
-        return view('welcome');
-    })->name('reset-password');
+    return view('welcome');
+})->name('reset-password');
 
 
 
-    Route::get('reset-password-update', function () {
-        $token = request()->query('token');
-        $email = request()->query('email');
-        return view('welcome', compact('email', 'token'));
-    })->name('reset-password-update');
+Route::get('reset-password-update', function () {
+    $token = request()->query('token');
+    $email = request()->query('email');
+    return view('welcome', compact('email', 'token'));
+})->name('reset-password-update');
 
 
 
-    
+
+
 Route::middleware('auth')->group(function () {
 
     Route::get('logout', function () {
@@ -42,4 +43,10 @@ Route::middleware('auth')->group(function () {
     Route::get('verify-email', function () {
         return view('welcome');
     })->name('verify-email');
+});
+
+
+
+Route::middleware('verified')->get('/test', function () {
+    return view('test');
 });

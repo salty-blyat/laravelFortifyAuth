@@ -58,8 +58,7 @@ class FortifyServiceProvider extends ServiceProvider
         });
 
         // verify email 
-        Fortify::verifyEmailView(function () { 
-            dd(request());
+        Fortify::verifyEmailView(function () {  
             return redirect()->route('verify-email');
         });
 
